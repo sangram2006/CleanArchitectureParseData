@@ -1,2 +1,2 @@
-# CleanArchitectureParseData
-Clean Architecture for Parse Data
+# Clean Architecture JSON ParseData
+Clean Architecture for JSON Parse Data
