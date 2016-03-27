@@ -1,33 +1,26 @@
 package mobile.saltside.com.parsedataapplication;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 import mobile.handler.com.handler_lib.ServeResponseMessage;
 import mobile.saltside.com.dialogutils.ShowMessage;
-import mobile.saltside.com.service.BaseService;
 
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, ListOfDataFragment.ListOfDataFragmentListener {
@@ -155,7 +148,7 @@ public class HomeActivity extends BaseActivity
     @Override
     public void onItemClicked(ServeResponseMessage response) {
         Intent intent = new Intent(this, DetailActivity.class);
-        //intent.putExtra("DATA", (Parcelable) response);
+        intent.putExtra(DetailActivity.SAVE_DATA,response);
         startActivity(intent);
     }
 }

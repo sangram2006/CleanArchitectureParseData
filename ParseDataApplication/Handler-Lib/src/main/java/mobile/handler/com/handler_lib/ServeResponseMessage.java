@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by sangram.
  */
-public class ServeResponseMessage {
+public class ServeResponseMessage implements Parcelable {
 
     @SerializedName("image")
     private String image;
@@ -47,5 +47,34 @@ public class ServeResponseMessage {
         this.title = title;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    protected ServeResponseMessage(Parcel in) {
+        image = in.readString();
+        description = in.readString();
+        title = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(image);
+        dest.writeString(description);
+        dest.writeString(title);
+    }
+
+    public static final Parcelable.Creator<ServeResponseMessage> CREATOR = new Parcelable.Creator<ServeResponseMessage>() {
+        @Override
+        public ServeResponseMessage createFromParcel(Parcel in) {
+            return new ServeResponseMessage(in);
+        }
+
+        @Override
+        public ServeResponseMessage[] newArray(int size) {
+            return new ServeResponseMessage[size];
+        }
+    };
 }
 

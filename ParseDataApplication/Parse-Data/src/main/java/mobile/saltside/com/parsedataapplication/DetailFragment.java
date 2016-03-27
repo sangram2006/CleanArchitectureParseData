@@ -24,10 +24,13 @@ public class DetailFragment extends Fragment {
 
     public static String FRAGMENT_TAG = "DetailFragment";
     private static ServeResponseMessage response;
+    public final static String DETAILS_RESPONSE = "DETAILS_RESPONSE";
 
     public static DetailFragment newInstance(ServeResponseMessage serverresponse) {
         DetailFragment fragment = new DetailFragment();
-        response = serverresponse;
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(DETAILS_RESPONSE, serverresponse);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -39,7 +42,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        response = (ServeResponseMessage) getArguments().getParcelable(DETAILS_RESPONSE);
     }
 
     @Override
@@ -49,9 +52,9 @@ public class DetailFragment extends Fragment {
         ImageView bindImage = (ImageView) rootView.findViewById(R.id.image);
         TextView title = (TextView) rootView.findViewById(R.id.detail_title);
         TextView description = (TextView) rootView.findViewById(R.id.detail_description);
-        title.setText("terminations map autos sons utilizations");
-        description.setText("sterilizer span ticks continuity hubs procurement vision eggs backups cries gap iron conferences torpedo government catchers restaurant destroyers attribute counsel echo overcurrent classes trip environments forecastle giants conspiracies suppression things rope plans bow blots rescuers incline");
-        String pathToFile = "http://dummyimage.com/715x350/105B19/907ECC";//response.getImage();
+        title.setText(response.getTitle());
+        description.setText(response.getDescription());
+        String pathToFile =response.getImage();
         DownloadImageWithURLTask downloadTask = new DownloadImageWithURLTask(bindImage);
         downloadTask.execute(pathToFile);
         return rootView;
