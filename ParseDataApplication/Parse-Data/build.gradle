@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "mobile.saltside.com.parsedataapplication"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -19,18 +19,24 @@ android {
     }
 }
 
+ext {
+    googleSupportVersion = rootProject.ext.supportLibVersion
+    junitVersion = rootProject.ext.junitVer
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'com.android.support:recyclerview-v7:+'
-    compile('de.greenrobot:eventbus:2.2.1') {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation group: 'com.android.support', name: 'appcompat-v7', version: googleSupportVersion
+    implementation group: 'com.android.support', name: 'design', version: googleSupportVersion
+    implementation group: 'com.android.support', name: 'recyclerview-v7', version: googleSupportVersion
+    testImplementation group: 'junit', name: 'junit', version: junitVersion
+
+    implementation('de.greenrobot:eventbus:2.2.1', {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
-    compile(project(':handler-lib')) {
+    })
+    implementation(project(':handler-lib'), {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
+    })
 }
