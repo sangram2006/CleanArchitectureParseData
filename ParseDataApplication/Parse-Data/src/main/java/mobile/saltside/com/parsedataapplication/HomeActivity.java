@@ -32,8 +32,8 @@ public class HomeActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getFragmentTransaction();
-        mProgressBar = (ProgressBar) findViewById(R.id.common_loading_display);
-        emptySetView = (TextView) findViewById(R.id.emptyset);
+        mProgressBar = findViewById(R.id.common_loading_display);
+        emptySetView = findViewById(R.id.emptyset);
         if (savedInstanceState == null) {
             ListOfDataFragment fragment = ListOfDataFragment.newInstance();
             getSupportFragmentManager()
@@ -46,10 +46,10 @@ public class HomeActivity extends BaseActivity
     }
 
     private FragmentTransaction getFragmentTransaction() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,13 +58,13 @@ public class HomeActivity extends BaseActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager manager = getFragmentManager();
@@ -73,7 +73,7 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -148,7 +148,7 @@ public class HomeActivity extends BaseActivity
     @Override
     public void onItemClicked(ServeResponseMessage response) {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.SAVE_DATA,response);
+        intent.putExtra(DetailActivity.SAVE_DATA, response);
         startActivity(intent);
     }
 }

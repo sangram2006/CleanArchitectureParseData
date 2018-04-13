@@ -6,6 +6,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -25,8 +26,8 @@ public class TransportManager {
     public static Reader getData(String SERVER_URL) {
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(SERVER_URL);
-            HttpResponse response = httpClient.execute(httpPost);
+            HttpGet httpGet = new HttpGet(SERVER_URL);
+            HttpResponse response = httpClient.execute(httpGet);
             StatusLine statusLine = response.getStatusLine();
 
             if (statusLine.getStatusCode() == 200) {

@@ -20,7 +20,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerVi
     private ArrayList<ServeResponseMessage> itemsData;
 
     public CustomAdapter(ListOfDataFragment.ListOfDataFragmentListener listner) {
-        this.itemsData = new ArrayList<ServeResponseMessage>();
+        this.itemsData = new ArrayList<>();
         mListner = listner;
     }
 
@@ -55,7 +55,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerVi
         // - replace the contents of the view with that itemsData
 
         viewHolder.txtViewTitle.setText(itemsData.get(position).getTitle());
-        viewHolder.txtDescription.setText(itemsData.get(position).getDescription());
+        viewHolder.txtDescription.setText(itemsData.get(position).getBody());
         viewHolder.setItem(itemsData.get(position));
 
 
@@ -75,8 +75,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerVi
         public RecyclerViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             itemLayoutView.setOnClickListener(this);
-            txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.title);
-            txtDescription = (TextView) itemLayoutView.findViewById(R.id.description);
+            txtViewTitle = itemLayoutView.findViewById(R.id.title);
+            txtDescription = itemLayoutView.findViewById(R.id.description);
         }
 
         public void setItem(ServeResponseMessage item) {

@@ -35,26 +35,21 @@ public class DetailFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        response = (ServeResponseMessage) getArguments().getParcelable(DETAILS_RESPONSE);
+        response = getArguments().getParcelable(DETAILS_RESPONSE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.detail_fragment, container, false);
         //Need to handle the Parcelable object of server response currently hard coded.
-        ImageView bindImage = (ImageView) rootView.findViewById(R.id.image);
-        TextView title = (TextView) rootView.findViewById(R.id.detail_title);
-        TextView description = (TextView) rootView.findViewById(R.id.detail_description);
+        ImageView bindImage = rootView.findViewById(R.id.image);
+        TextView title = rootView.findViewById(R.id.detail_title);
+        TextView description = rootView.findViewById(R.id.detail_description);
         title.setText(response.getTitle());
-        description.setText(response.getDescription());
-        String pathToFile =response.getImage();
+        description.setText(response.getBody());
+        String pathToFile = "" + response.getId();
         DownloadImageWithURLTask downloadTask = new DownloadImageWithURLTask(bindImage);
         downloadTask.execute(pathToFile);
         return rootView;

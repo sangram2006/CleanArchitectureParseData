@@ -10,33 +10,36 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ServeResponseMessage implements Parcelable {
 
-    @SerializedName("image")
-    private String image;
-    @SerializedName("description")
-    private String description;
+    @SerializedName("userId")
+    private int userId;
+    @SerializedName("id")
+    private int id;
     @SerializedName("title")
     private String title;
+    @SerializedName("body")
+    private String body;
 
-    public ServeResponseMessage(String image, String description, String title) {
-        this.image = image;
-        this.description = description;
+    public ServeResponseMessage(int userId, int id, String title, String body) {
+        this.userId = userId;
+        this.id = id;
         this.title = title;
+        this.body = body;
     }
 
-    public String getImage() {
-        return image;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getDescription() {
-        return description;
+    public int getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -47,22 +50,33 @@ public class ServeResponseMessage implements Parcelable {
         this.title = title;
     }
 
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     protected ServeResponseMessage(Parcel in) {
-        image = in.readString();
-        description = in.readString();
+        userId = in.readInt();
+        id = in.readInt();
         title = in.readString();
+        body = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(image);
-        dest.writeString(description);
+        dest.writeInt(userId);
+        dest.writeInt(id);
         dest.writeString(title);
+        dest.writeString(body);
     }
 
     public static final Parcelable.Creator<ServeResponseMessage> CREATOR = new Parcelable.Creator<ServeResponseMessage>() {

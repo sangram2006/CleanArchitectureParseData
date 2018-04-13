@@ -31,7 +31,7 @@ public class ListOfDataFragment extends Fragment {
     public ArrayList<ServeResponseMessage> mDataList = new ArrayList<ServeResponseMessage>();
 
     public interface ListOfDataFragmentListener {
-        public void onItemClicked(ServeResponseMessage response);
+        void onItemClicked(ServeResponseMessage response);
     }
 
     public static ListOfDataFragment newInstance() {
@@ -53,7 +53,7 @@ public class ListOfDataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_item, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler);
+        mRecyclerView = rootView.findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
 
         // Setting the LayoutManager.
