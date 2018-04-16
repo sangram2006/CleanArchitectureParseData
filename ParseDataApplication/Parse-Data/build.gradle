@@ -30,6 +30,10 @@ dependencies {
     implementation group: 'com.android.support', name: 'design', version: googleSupportVersion
     implementation group: 'com.android.support', name: 'recyclerview-v7', version: googleSupportVersion
     testImplementation group: 'junit', name: 'junit', version: junitVersion
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.4.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.4.0'
+    implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava', version: '2.4.0'
+    implementation group: 'io.reactivex', name: 'rxandroid', version: '1.2.1'
 
     implementation('de.greenrobot:eventbus:2.2.1', {
         exclude group: 'com.android.support', module: 'support-v4'
